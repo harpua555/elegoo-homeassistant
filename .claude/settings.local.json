@@ -5,7 +5,8 @@
       "Bash(python -m pytest:*)",
       "Bash(python test_extrusion.py:*)",
       "Bash(cat:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(../.venv/Scripts/python.exe:*)"
     ],
     "deny": [],
     "ask": []
