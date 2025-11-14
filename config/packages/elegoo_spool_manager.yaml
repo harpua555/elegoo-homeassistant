@@ -1,7 +1,5 @@
 # Elegoo Filament Spool Manager with Weight & Density Support
-# This package provides filament tracking for up to 4 spools
-# Supports both length (mm) and weight (g) tracking with material density
-# Formula: Weight (g) = (π * r² * length * density) where r = filament_diameter/2
+# Track up to 4 spools by length (mm) and weight (g)
 
 input_text:
   spool_1_name:
@@ -279,7 +277,7 @@ template:
           {% elif active == 'Spool 4' %}
             {{ states('input_text.spool_4_name') }}
           {% else %}
-            None
+            ""
           {% endif %}
         icon: mdi:label
 
@@ -515,7 +513,6 @@ template:
           {% set remaining_len = (initial_len - used_len) | max(0) %}
           {{ (pi * radius * radius * remaining_len * density / 1000) | round(2) }}
         icon: mdi:scale
-
 
 automation:
   # Auto-update density when material type changes
@@ -793,7 +790,7 @@ automation:
             {{ (weight * 1000 / (pi * radius * radius * density)) | round(0) }}
 
   # Track filament usage from total_extrusion sensor
-  # NOTE: Replace 'sensor.YOUR_PRINTER_total_extrusion' with your actual sensor entity ID
+  # NOTE: Replace 'sensor.elegoo_printer_total_extrusion' with your actual sensor entity ID
   - id: elegoo_track_filament_usage
     alias: "Elegoo: Track Filament Usage"
     description: "Updates the used length on the active spool based on total extrusion"
