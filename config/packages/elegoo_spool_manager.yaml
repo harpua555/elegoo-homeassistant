@@ -790,20 +790,22 @@ automation:
             {% set pi = 3.14159265359 %}
             {{ (weight * 1000 / (pi * radius * radius * density)) | round(0) }}
 
-  # Track filament usage from total_extrusion sensor
-  # NOTE: Replace 'sensor.elegoo_printer_total_extrusion' with your actual sensor entity ID
-  - id: elegoo_track_filament_usage
-    alias: "Elegoo: Track Filament Usage"
-    description: "Updates the used length on the active spool based on total extrusion"
+  # Add filament usage to active spool when print completes
+  - id: elegoo_log_filament_usage_on_complete
+    alias: "Elegoo: Log Filament Usage on Print Complete"
+    description: "Adds the total extrusion from the completed print to the active spool's used length"
     trigger:
       - platform: state
-        entity_id: sensor.elegoo_printer_total_extrusion  # CHANGE THIS to match your printer's entity ID
+        entity_id: sensor.elegoo_printer_print_status
+        to: "complete"
     condition:
       - condition: state
         entity_id: input_boolean.spool_tracking_enabled
         state: "on"
       - condition: template
         value_template: "{{ states('input_select.active_spool') != 'None' }}"
+      - condition: template
+        value_template: "{{ states('sensor.elegoo_printer_total_extrusion') | float(0) > 0 }}"
     action:
       - choose:
           - conditions:
@@ -815,7 +817,10 @@ automation:
                 target:
                   entity_id: input_number.spool_1_used_length
                 data:
-                  value: "{{ trigger.to_state.state | float(0) }}"
+                  value: >
+                    {% set current_used = states('input_number.spool_1_used_length') | float(0) %}
+                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {{ (current_used + print_usage) | round(2) }}
           - conditions:
               - condition: state
                 entity_id: input_select.active_spool
@@ -825,7 +830,10 @@ automation:
                 target:
                   entity_id: input_number.spool_2_used_length
                 data:
-                  value: "{{ trigger.to_state.state | float(0) }}"
+                  value: >
+                    {% set current_used = states('input_number.spool_2_used_length') | float(0) %}
+                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {{ (current_used + print_usage) | round(2) }}
           - conditions:
               - condition: state
                 entity_id: input_select.active_spool
@@ -835,7 +843,10 @@ automation:
                 target:
                   entity_id: input_number.spool_3_used_length
                 data:
-                  value: "{{ trigger.to_state.state | float(0) }}"
+                  value: >
+                    {% set current_used = states('input_number.spool_3_used_length') | float(0) %}
+                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {{ (current_used + print_usage) | round(2) }}
           - conditions:
               - condition: state
                 entity_id: input_select.active_spool
@@ -845,6 +856,7 @@ automation:
                 target:
                   entity_id: input_number.spool_4_used_length
                 data:
-                  value: "{{ trigger.to_state.state | float(0) }}"
-    mode: queued
-    max: 10
+                  value: >
+                    {% set current_used = states('input_number.spool_4_used_length') | float(0) %}
+                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {{ (current_used + print_usage) | round(2) }}
