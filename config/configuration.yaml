@@ -9,4 +9,9 @@ logger:
   logs:
     custom_components.elegoo_printer: debug
 
+# https://www.home-assistant.io/integrations/lovelace/
+lovelace:
+  mode: storage
+  dashboards: !include dashboards.yaml
+
 default_config:
