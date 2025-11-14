@@ -35,6 +35,11 @@ input_text:
     max: 20
     initial: "None"
 
+  current_print_extrusion:
+    name: "Current Print Total Extrusion"
+    max: 50
+    initial: "0"
+
 input_number:
   # Backup storage for undo functionality
   spool_1_last_used_length:
@@ -153,6 +158,28 @@ automation:
             {% else %}
               0
             {% endif %}
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.current_print_extrusion
+        data:
+          value: "0"
+
+  # Continuously update extrusion during print
+  - id: elegoo_track_print_extrusion
+    alias: "Elegoo: Track Print Extrusion"
+    trigger:
+      - platform: state
+        entity_id: sensor.elegoo_printer_total_extrusion
+    condition:
+      - condition: state
+        entity_id: sensor.elegoo_printer_print_status
+        state: "printing"
+    action:
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.current_print_extrusion
+        data:
+          value: "{{ trigger.to_state.state }}"
 
   # Track print completion and log to history
   - id: elegoo_log_print_completion

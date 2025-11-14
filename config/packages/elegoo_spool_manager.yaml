@@ -805,7 +805,7 @@ automation:
       - condition: template
         value_template: "{{ states('input_select.active_spool') != 'None' }}"
       - condition: template
-        value_template: "{{ states('sensor.elegoo_printer_total_extrusion') | float(0) > 0 }}"
+        value_template: "{{ trigger.from_state.state == 'printing' }}"
     action:
       - choose:
           - conditions:
@@ -819,7 +819,7 @@ automation:
                 data:
                   value: >
                     {% set current_used = states('input_number.spool_1_used_length') | float(0) %}
-                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {% set print_usage = states('input_text.current_print_extrusion') | float(0) %}
                     {{ (current_used + print_usage) | round(2) }}
           - conditions:
               - condition: state
@@ -832,7 +832,7 @@ automation:
                 data:
                   value: >
                     {% set current_used = states('input_number.spool_2_used_length') | float(0) %}
-                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {% set print_usage = states('input_text.current_print_extrusion') | float(0) %}
                     {{ (current_used + print_usage) | round(2) }}
           - conditions:
               - condition: state
@@ -845,7 +845,7 @@ automation:
                 data:
                   value: >
                     {% set current_used = states('input_number.spool_3_used_length') | float(0) %}
-                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {% set print_usage = states('input_text.current_print_extrusion') | float(0) %}
                     {{ (current_used + print_usage) | round(2) }}
           - conditions:
               - condition: state
@@ -858,5 +858,5 @@ automation:
                 data:
                   value: >
                     {% set current_used = states('input_number.spool_4_used_length') | float(0) %}
-                    {% set print_usage = states('sensor.elegoo_printer_total_extrusion') | float(0) %}
+                    {% set print_usage = states('input_text.current_print_extrusion') | float(0) %}
                     {{ (current_used + print_usage) | round(2) }}
