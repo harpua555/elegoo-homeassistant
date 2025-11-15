@@ -23,17 +23,50 @@ This is a standalone filament spool management system for Home Assistant that wo
 
 ## Installation
 
-### 1. Copy Package Files
+You have several options to install the spool manager:
 
-Copy the package files to your Home Assistant configuration:
+### Method 1: Download ZIP (Easiest)
+
+1. **Download** the latest release ZIP from GitHub:
+   - Go to [Releases](https://github.com/danielcherubini/elegoo-homeassistant/releases)
+   - Download `elegoo-spool-manager-standalone.zip`
+
+2. **Extract** the ZIP file
+
+3. **Copy files** to your Home Assistant:
+   ```bash
+   # Copy both package files to your packages directory
+   cp config/packages/elegoo_spool_manager.yaml /config/packages/
+   cp config/packages/elegoo_spool_history.yaml /config/packages/
+
+   # Copy dashboard (choose your preferred option below)
+   cp config/lovelace-spool-manager.yaml /config/
+   ```
+
+### Method 2: Git Clone
+
+Clone just the standalone branch:
 
 ```bash
-# Copy both package files to your packages directory
-cp config/packages/elegoo_spool_manager.yaml /config/packages/
-cp config/packages/elegoo_spool_history.yaml /config/packages/
+# Clone only the standalone branch
+git clone -b standalone --single-branch https://github.com/danielcherubini/elegoo-homeassistant.git elegoo-spool-manager
+
+# Copy files to Home Assistant
+cp elegoo-spool-manager/config/packages/*.yaml /config/packages/
+cp elegoo-spool-manager/config/lovelace-spool-manager.yaml /config/
 ```
 
-### 2. Enable Packages in Configuration
+### Method 3: Manual File Copy
+
+Copy individual files directly from GitHub:
+
+1. Browse to the [standalone branch](https://github.com/danielcherubini/elegoo-homeassistant/tree/standalone)
+2. Navigate to each file and click "Raw"
+3. Save the file to your `/config/packages/` or `/config/dashboards/` directory
+
+## Setup After Installation
+
+### 1. Enable Packages in Configuration
 
 Add this to your `configuration.yaml` if not already present:
 
@@ -42,7 +75,7 @@ homeassistant:
   packages: !include_dir_named packages
 ```
 
-### 3. Choose and Install Dashboard
+### 2. Choose and Install Dashboard
 
 Pick one of the dashboard options:
 
@@ -79,7 +112,7 @@ For a collapsible card with history buttons:
 cp config/dashboards/elegoo_spool_manager_with_history.yaml /config/dashboards/
 ```
 
-### 4. Restart Home Assistant
+### 3. Restart Home Assistant
 
 Restart Home Assistant to load the new configuration.
 
