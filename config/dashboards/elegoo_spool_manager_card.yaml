@@ -7,7 +7,7 @@ cards:
   # Header Card
   - type: markdown
     content: |
-      ## 🎨 Filament Spool Manager
+      ## Filament Spool Manager
       Track and manage your 3D printer filament spools
 
   # Active Spool Selection

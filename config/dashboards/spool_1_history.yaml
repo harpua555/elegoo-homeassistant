@@ -51,7 +51,7 @@ cards:
         name: "Last Print Weight"
         icon: mdi:scale
       - type: button
-        name: "🔄 Undo Last Print"
+        name: "Undo Last Print"
         icon: mdi:undo
         tap_action:
           action: call-service

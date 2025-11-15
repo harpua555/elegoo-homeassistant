@@ -7,7 +7,7 @@ cards:
   # Header Card
   - type: markdown
     content: |
-      ## 🎨 Filament Spool Manager
+      ## Filament Spool Manager
       Track and manage your 3D printer filament spools with weight & history tracking
 
   # Active Spool Control Panel
@@ -16,20 +16,20 @@ cards:
     state_color: true
     entities:
       - entity: input_boolean.spool_tracking_enabled
-        name: "🔄 Enable Tracking"
+        name: "Enable Tracking"
       - entity: input_select.active_spool
-        name: "📍 Active Spool"
+        name: "Active Spool"
       - entity: input_number.filament_diameter
-        name: "⚙️ Filament Diameter"
+        name: "Filament Diameter"
       - type: divider
       - entity: sensor.active_spool_name
-        name: "🏷️ Current Spool"
+        name: "Current Spool"
         icon: mdi:label
       - entity: sensor.remaining_filament_length
-        name: "📏 Remaining Length"
+        name: "Remaining Length"
         icon: mdi:ruler
       - entity: sensor.remaining_filament_weight
-        name: "⚖️ Remaining Weight"
+        name: "Remaining Weight"
         icon: mdi:scale
 
   # Remaining Filament Gauges
@@ -74,7 +74,7 @@ cards:
           - entity: sensor.spool_1_last_print_weight
             name: "Last Print Weight"
           - type: button
-            name: "🔄 Undo Last Print"
+            name: "Undo Last Print"
             action_name: Undo
             tap_action:
               action: call-service
@@ -82,7 +82,7 @@ cards:
               confirmation:
                 text: "Restore filament from last print?"
           - type: button
-            name: "📜 View Full History"
+            name: "View Full History"
             icon: mdi:history
             tap_action:
               action: navigate
@@ -99,7 +99,7 @@ cards:
           - entity: sensor.spool_2_last_print_weight
             name: "Last Print Weight"
           - type: button
-            name: "🔄 Undo Last Print"
+            name: "Undo Last Print"
             action_name: Undo
             tap_action:
               action: call-service
@@ -107,7 +107,7 @@ cards:
               confirmation:
                 text: "Restore filament from last print?"
           - type: button
-            name: "📜 View Full History"
+            name: "View Full History"
             icon: mdi:history
             tap_action:
               action: navigate
@@ -124,7 +124,7 @@ cards:
           - entity: sensor.spool_3_last_print_weight
             name: "Last Print Weight"
           - type: button
-            name: "🔄 Undo Last Print"
+            name: "Undo Last Print"
             action_name: Undo
             tap_action:
               action: call-service
@@ -132,7 +132,7 @@ cards:
               confirmation:
                 text: "Restore filament from last print?"
           - type: button
-            name: "📜 View Full History"
+            name: "View Full History"
             icon: mdi:history
             tap_action:
               action: navigate
@@ -149,7 +149,7 @@ cards:
           - entity: sensor.spool_4_last_print_weight
             name: "Last Print Weight"
           - type: button
-            name: "🔄 Undo Last Print"
+            name: "Undo Last Print"
             action_name: Undo
             tap_action:
               action: call-service
@@ -157,7 +157,7 @@ cards:
               confirmation:
                 text: "Restore filament from last print?"
           - type: button
-            name: "📜 View Full History"
+            name: "View Full History"
             icon: mdi:history
             tap_action:
               action: navigate
@@ -169,22 +169,22 @@ cards:
     state_color: true
     entities:
       - entity: input_text.spool_1_name
-        name: "✏️ Name"
+        name: "Name"
       - entity: input_select.spool_1_material
-        name: "🧪 Material"
+        name: "Material"
       - entity: input_number.spool_1_density
-        name: "⚗️ Density"
+        name: "Density"
       - entity: input_number.spool_1_initial_weight
-        name: "📦 Initial Weight (sets length)"
+        name: "Initial Weight (sets length)"
       - entity: input_number.spool_1_initial_length
-        name: "📏 Initial Length"
+        name: "Initial Length"
       - entity: input_number.spool_1_used_length
-        name: "🔄 Used Length"
+        name: "Used Length"
       - type: divider
       - entity: sensor.spool_1_remaining_length
-        name: "📊 Remaining Length"
+        name: "Remaining Length"
       - entity: sensor.spool_1_remaining_weight
-        name: "⚖️ Remaining Weight"
+        name: "Remaining Weight"
 
   # Spool 2 Configuration
   - type: entities
@@ -192,22 +192,22 @@ cards:
     state_color: true
     entities:
       - entity: input_text.spool_2_name
-        name: "✏️ Name"
+        name: "Name"
       - entity: input_select.spool_2_material
-        name: "🧪 Material"
+        name: "Material"
       - entity: input_number.spool_2_density
-        name: "⚗️ Density"
+        name: "Density"
       - entity: input_number.spool_2_initial_weight
-        name: "📦 Initial Weight (sets length)"
+        name: "Initial Weight (sets length)"
       - entity: input_number.spool_2_initial_length
-        name: "📏 Initial Length"
+        name: "Initial Length"
       - entity: input_number.spool_2_used_length
-        name: "🔄 Used Length"
+        name: "Used Length"
       - type: divider
       - entity: sensor.spool_2_remaining_length
-        name: "📊 Remaining Length"
+        name: "Remaining Length"
       - entity: sensor.spool_2_remaining_weight
-        name: "⚖️ Remaining Weight"
+        name: "Remaining Weight"
 
   # Spool 3 Configuration
   - type: entities
@@ -215,22 +215,22 @@ cards:
     state_color: true
     entities:
       - entity: input_text.spool_3_name
-        name: "✏️ Name"
+        name: "Name"
       - entity: input_select.spool_3_material
-        name: "🧪 Material"
+        name: "Material"
       - entity: input_number.spool_3_density
-        name: "⚗️ Density"
+        name: "Density"
       - entity: input_number.spool_3_initial_weight
-        name: "📦 Initial Weight (sets length)"
+        name: "Initial Weight (sets length)"
       - entity: input_number.spool_3_initial_length
-        name: "📏 Initial Length"
+        name: "Initial Length"
       - entity: input_number.spool_3_used_length
-        name: "🔄 Used Length"
+        name: "Used Length"
       - type: divider
       - entity: sensor.spool_3_remaining_length
-        name: "📊 Remaining Length"
+        name: "Remaining Length"
       - entity: sensor.spool_3_remaining_weight
-        name: "⚖️ Remaining Weight"
+        name: "Remaining Weight"
 
   # Spool 4 Configuration
   - type: entities
@@ -238,19 +238,19 @@ cards:
     state_color: true
     entities:
       - entity: input_text.spool_4_name
-        name: "✏️ Name"
+        name: "Name"
       - entity: input_select.spool_4_material
-        name: "🧪 Material"
+        name: "Material"
       - entity: input_number.spool_4_density
-        name: "⚗️ Density"
+        name: "Density"
       - entity: input_number.spool_4_initial_weight
-        name: "📦 Initial Weight (sets length)"
+        name: "Initial Weight (sets length)"
       - entity: input_number.spool_4_initial_length
-        name: "📏 Initial Length"
+        name: "Initial Length"
       - entity: input_number.spool_4_used_length
-        name: "🔄 Used Length"
+        name: "Used Length"
       - type: divider
       - entity: sensor.spool_4_remaining_length
-        name: "📊 Remaining Length"
+        name: "Remaining Length"
       - entity: sensor.spool_4_remaining_weight
-        name: "⚖️ Remaining Weight"
+        name: "Remaining Weight"
